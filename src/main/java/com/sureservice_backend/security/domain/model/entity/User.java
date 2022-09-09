@@ -1,8 +1,7 @@
 package com.sureservice_backend.security.domain.model.entity;
 
-import lombok.*;
-
 import com.sureservice_backend.shared.domain.model.AuditModel;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -11,13 +10,12 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @With
+@AllArgsConstructor
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
 public class User extends AuditModel {
     @Id
@@ -27,20 +25,7 @@ public class User extends AuditModel {
     @NotBlank
     @Size(max = 50)
     @Column(unique = true)
-    private String name;
-
-    @NotBlank
-    @Size(max = 50)
-    @Column(unique = true)
-    private String last_name;
-
-    @NotBlank
-    @Size(max = 120)
-    private String telephone;
-
-    @NotBlank
-    @Size(max = 120)
-    private String dni;
+    private String username;
 
     @NotBlank
     @Size(max = 50)
@@ -52,4 +37,15 @@ public class User extends AuditModel {
     @Size(max = 120)
     private String password;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }
