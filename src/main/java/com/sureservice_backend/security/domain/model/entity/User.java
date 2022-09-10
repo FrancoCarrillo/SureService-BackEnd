@@ -31,6 +31,25 @@ public class User extends AuditModel {
     @NotBlank
     @Size(max = 50)
     @Column(unique = true)
+    private String name;
+
+    @NotBlank
+    @Size(max = 50)
+    @Column(unique = true)
+    private String last_name;
+
+    @NotBlank
+    @Size(max = 50)
+    @Column(unique = true)
+    private String telephone_number;
+
+    @NotBlank
+    @Size(max = 50)
+    @Column(unique = true)
+    private String dni;
+    @NotBlank
+    @Size(max = 50)
+    @Column(unique = true)
     @Email
     private String email;
 

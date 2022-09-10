@@ -137,8 +137,10 @@ public class UserServiceImpl implements UserService {
             client.setEmail(request.getEmail());
             client.setPassword(encoder.encode(request.getPassword()));
             client.setRoles(roles);
-
-
+            client.setDni(request.getDni());
+            client.setTelephone_number(request.getTelephone_number());
+            client.setName(request.getName());
+            client.setLast_name(request.getLast_name());
 
             clientRepository.save(client);
             ClientResource resource = mapper.map(client, ClientResource.class);
@@ -152,60 +154,60 @@ public class UserServiceImpl implements UserService {
 
         }
     }
-    @Override
-    public ResponseEntity<?> register(RegisterRequest request) {
-
-        if (userRepository.existsByUsername(request.getUsername())) {
-            AuthenticateResponse response = new AuthenticateResponse("Username is already used.");
-            return ResponseEntity.badRequest()
-                    .body(response.getMessage());
-        }
-
-        if (userRepository.existsByEmail(request.getEmail())) {
-            AuthenticateResponse response = new AuthenticateResponse("Email is already used.");
-            return ResponseEntity.badRequest()
-                    .body(response.getMessage());
-        }
-
-        try {
-
-            Set<String> rolesStringSet = request.getRoles();
-            Set<Role> roles = new HashSet<>();
-
-            if (rolesStringSet == null) {
-                roleRepository.findByName(Roles.ROLE_CLIENT)
-                        .map(roles::add)
-                        .orElseThrow(() -> new RuntimeException("Role not found."));
-            } else {
-                rolesStringSet.forEach(roleString ->
-                        roleRepository.findByName(Roles.valueOf(roleString))
-                                .map(roles::add)
-                                .orElseThrow(() -> new RuntimeException("Role not found.")));
-            }
-
-            logger.info("Roles: {}", roles);
-
-            User user = new User()
-                    .withUsername(request.getUsername())
-                    .withEmail(request.getEmail())
-                    .withPassword(encoder.encode(request.getPassword()))
-                    .withRoles(roles);
-
-
-            userRepository.save(user);
-            UserResource resource = mapper.map(user, UserResource.class);
-            RegisterResponse response = new RegisterResponse(resource);
-            return ResponseEntity.ok(response.getResource());
-
-        } catch (Exception e) {
-
-            RegisterResponse response = new RegisterResponse(e.getMessage());
-            return ResponseEntity.badRequest().body(response.getMessage());
-
-        }
-
-
-    }
+//    @Override
+//    public ResponseEntity<?> register(RegisterRequest request) {
+//
+//        if (userRepository.existsByUsername(request.getUsername())) {
+//            AuthenticateResponse response = new AuthenticateResponse("Username is already used.");
+//            return ResponseEntity.badRequest()
+//                    .body(response.getMessage());
+//        }
+//
+//        if (userRepository.existsByEmail(request.getEmail())) {
+//            AuthenticateResponse response = new AuthenticateResponse("Email is already used.");
+//            return ResponseEntity.badRequest()
+//                    .body(response.getMessage());
+//        }
+//
+//        try {
+//
+//            Set<String> rolesStringSet = request.getRoles();
+//            Set<Role> roles = new HashSet<>();
+//
+//            if (rolesStringSet == null) {
+//                roleRepository.findByName(Roles.ROLE_CLIENT)
+//                        .map(roles::add)
+//                        .orElseThrow(() -> new RuntimeException("Role not found."));
+//            } else {
+//                rolesStringSet.forEach(roleString ->
+//                        roleRepository.findByName(Roles.valueOf(roleString))
+//                                .map(roles::add)
+//                                .orElseThrow(() -> new RuntimeException("Role not found.")));
+//            }
+//
+//            logger.info("Roles: {}", roles);
+//
+//            User user = new User()
+//                    .withUsername(request.getUsername())
+//                    .withEmail(request.getEmail())
+//                    .withPassword(encoder.encode(request.getPassword()))
+//                    .withRoles(roles);
+//
+//
+//            userRepository.save(user);
+//            UserResource resource = mapper.map(user, UserResource.class);
+//            RegisterResponse response = new RegisterResponse(resource);
+//            return ResponseEntity.ok(response.getResource());
+//
+//        } catch (Exception e) {
+//
+//            RegisterResponse response = new RegisterResponse(e.getMessage());
+//            return ResponseEntity.badRequest().body(response.getMessage());
+//
+//        }
+//
+//
+//    }
 
     public List<User> getAll() {
         return userRepository.findAll();
