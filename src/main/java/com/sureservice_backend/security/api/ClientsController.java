@@ -1,10 +1,14 @@
 package com.sureservice_backend.security.api;
 
 
+import com.sureservice_backend.security.domain.service.ClientService;
 import com.sureservice_backend.security.domain.service.UserService;
 import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
+import com.sureservice_backend.security.mapping.ClientMapper;
+import com.sureservice_backend.security.resource.ClientResource;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +22,19 @@ import javax.validation.Valid;
 public class ClientsController {
 
     private final UserService userService;
+    private final ClientMapper mapper;
+    private final ClientService clientService;
 
-    public ClientsController(UserService userService) {
+    public ClientsController(UserService userService, ClientMapper mapper, ClientService clientService) {
         this.userService = userService;
+        this.mapper = mapper;
+        this.clientService = clientService;
     }
 
 
-    @PostMapping("clients/sign-up")
-    public ResponseEntity<?> registerClient(@Valid @RequestBody RegisterRequest request) {
-        return userService.registerClient(request);
+    @PostMapping("sign-up")
+    public ResponseEntity<ClientResource> registerClient(@Valid @RequestBody RegisterRequest request) {
+        return new ResponseEntity<>(mapper.toResource(clientService.register(request)) , HttpStatus.CREATED) ;
     }
 
 

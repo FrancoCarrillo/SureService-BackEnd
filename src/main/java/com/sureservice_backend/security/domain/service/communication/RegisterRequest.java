@@ -24,8 +24,7 @@ public class RegisterRequest {
     @NotBlank
     private String password;
 
-
-    private Set<String> roles;
+    private Long role;
 
     @NotNull
     @NotBlank

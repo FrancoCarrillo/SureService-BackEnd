@@ -30,7 +30,9 @@ public class TechnicianMapper implements Serializable {
     public TechnicianResource toResource(Technician model) {
 
         mapper.addConverter(roleToString);
-        return mapper.map(new TechnicianEntityMapper(model.getId(), model.getUsername(), model.getEmail(), (List)model.getRoles(), model.getProfessional_profile(), model.getValoration(), model.getDistrict(), model.getDisponibility(), model.getSpeciality()), TechnicianResource.class);
+        return mapper.map(new TechnicianEntityMapper(model.getId(), model.getUsername(), model.getEmail(),
+                (List)model.getRol(), model.getProfessional_profile(), model.getValoration(), model.getDistrict(),
+                model.getDisponibility(), model.getSpeciality()), TechnicianResource.class);
 
     }
 
