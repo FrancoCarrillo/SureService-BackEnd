@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @Tag(name = "Users", description = "Create, read, update and delete users")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1")
 public class UsersController {
 
     private final UserService userService;
@@ -36,13 +36,16 @@ public class UsersController {
         return userService.authenticate(request);
     }
 
+    @PostMapping("clients/sign-up")
+    public ResponseEntity<?> registerClient(@Valid @RequestBody RegisterRequest request) {
+        return userService.registerClient(request);
+    }
+
     @PostMapping("/auth/sign-up")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest request) {
         return userService.register(request);
     }
-
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAllUsers(Pageable pageable) {
         Page<UserResource> resources = mapper.modelListToPage(userService.getAll(), pageable);
         return ResponseEntity.ok(resources);

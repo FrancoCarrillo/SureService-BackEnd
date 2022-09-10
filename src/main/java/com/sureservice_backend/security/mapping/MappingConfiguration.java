@@ -11,6 +11,11 @@ public class MappingConfiguration {
     }
 
     @Bean
+    public ClientMapper clientMapper() {
+        return new ClientMapper();
+    }
+
+    @Bean
     public RoleMapper roleMapper() {
         return new RoleMapper();
     }
