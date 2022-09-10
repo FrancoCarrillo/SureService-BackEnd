@@ -7,9 +7,4 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Long> {
-
-    Boolean existsByUsername(String username);
-
-    Boolean existsByEmail(String email);
-}
+public interface ClientRepository extends JpaRepository<Client, Long> {}

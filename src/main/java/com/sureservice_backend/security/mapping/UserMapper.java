@@ -26,7 +26,6 @@ public class UserMapper implements Serializable {
         }
     };
 
-    // Object Mapping
     public UserResource toResource(User model) {
 
         mapper.addConverter(roleToString);
