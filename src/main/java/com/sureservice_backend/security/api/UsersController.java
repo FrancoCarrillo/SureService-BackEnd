@@ -3,6 +3,7 @@ package com.sureservice_backend.security.api;
 import com.sureservice_backend.security.domain.service.UserService;
 import com.sureservice_backend.security.domain.service.communication.AuthenticateRequest;
 import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
+import com.sureservice_backend.security.domain.service.communication.RegisterTechnicianRequest;
 import com.sureservice_backend.security.mapping.UserMapper;
 import com.sureservice_backend.security.resource.UserResource;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -41,10 +42,11 @@ public class UsersController {
         return userService.registerClient(request);
     }
 
-//    @PostMapping("/auth/sign-up")
-//    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest request) {
-//        return userService.register(request);
-//    }
+    @PostMapping("technician/sign-up")
+    public ResponseEntity<?> registerTechnician(@Valid @RequestBody RegisterTechnicianRequest request) {
+        return userService.registerTechnician(request);
+    }
+
     @GetMapping
     public ResponseEntity<?> getAllUsers(Pageable pageable) {
         Page<UserResource> resources = mapper.modelListToPage(userService.getAll(), pageable);

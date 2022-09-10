@@ -2,9 +2,7 @@ package com.sureservice_backend.security.domain.model.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -21,15 +19,16 @@ public class Technician extends User{
     @NotBlank
     @Size(max = 50)
     private String professional_profile;
-
-    @Size(max = 5)
+    
     private int valoration;
 
     @NotBlank
     @Size(max = 50)
     private String district;
 
-    @NotBlank
-    @Size(max = 2)
     private int disponibility;
+
+    @ManyToOne
+    @JoinColumn(name = "speciality_id", nullable = false)
+    private Speciality speciality;
 }
