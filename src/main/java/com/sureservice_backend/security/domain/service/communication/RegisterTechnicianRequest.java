@@ -29,7 +29,7 @@ public class RegisterTechnicianRequest {
     private String password;
 
 
-    private Set<String> roles;
+    private Long role;
 
     @NotNull
     @NotBlank

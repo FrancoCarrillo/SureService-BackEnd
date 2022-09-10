@@ -30,21 +30,18 @@ public class User extends AuditModel {
 
     @NotBlank
     @Size(max = 50)
-    @Column(unique = true)
     private String name;
 
     @NotBlank
     @Size(max = 50)
-    @Column(unique = true)
     private String last_name;
 
     @NotBlank
-    @Size(max = 50)
-    @Column(unique = true)
+    @Size(max = 9)
     private String telephone_number;
 
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 8)
     @Column(unique = true)
     private String dni;
     @NotBlank
@@ -57,11 +54,9 @@ public class User extends AuditModel {
     @Size(max = 120)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rol_id", nullable = false)
+    private Role rol;
 
     public User(String username, String email, String password) {
         this.username = username;

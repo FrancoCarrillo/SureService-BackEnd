@@ -37,10 +37,6 @@ public class UsersController {
         return userService.authenticate(request);
     }
 
-    @PostMapping("clients/sign-up")
-    public ResponseEntity<?> registerClient(@Valid @RequestBody RegisterRequest request) {
-        return userService.registerClient(request);
-    }
 
     @PostMapping("technician/sign-up")
     public ResponseEntity<?> registerTechnician(@Valid @RequestBody RegisterTechnicianRequest request) {

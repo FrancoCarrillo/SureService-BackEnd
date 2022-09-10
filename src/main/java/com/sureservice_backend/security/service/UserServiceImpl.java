@@ -27,10 +27,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,8 +38,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    ClientRepository clientRepository;
+
 
     @Autowired
     RoleRepository roleRepository;
@@ -105,70 +101,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<?> registerClient(RegisterRequest request) {
-        if (clientRepository.existsByUsername(request.getUsername())) {
-            AuthenticateResponse response = new AuthenticateResponse("Username is already used.");
-            return ResponseEntity.badRequest()
-                    .body(response.getMessage());
-        }
 
-        if (clientRepository.existsByEmail(request.getEmail())) {
-            AuthenticateResponse response = new AuthenticateResponse("Email is already used.");
-            return ResponseEntity.badRequest()
-                    .body(response.getMessage());
-        }
-
-        try {
-
-            Set<String> rolesStringSet = request.getRoles();
-            Set<Role> roles = new HashSet<>();
-
-            if (rolesStringSet == null) {
-                roleRepository.findByName(Roles.ROLE_CLIENT)
-                        .map(roles::add)
-                        .orElseThrow(() -> new RuntimeException("Role not found."));
-            } else {
-                rolesStringSet.forEach(roleString ->
-                        roleRepository.findByName(Roles.valueOf(roleString))
-                                .map(roles::add)
-                                .orElseThrow(() -> new RuntimeException("Role not found.")));
-            }
-
-            logger.info("Roles: {}", roles);
-
-            Client client = new Client();
-            client.setAmount_reservation(0);
-            client.setUsername(request.getUsername());
-            client.setEmail(request.getEmail());
-            client.setPassword(encoder.encode(request.getPassword()));
-            client.setRoles(roles);
-            client.setDni(request.getDni());
-            client.setTelephone_number(request.getTelephone_number());
-            client.setName(request.getName());
-            client.setLast_name(request.getLast_name());
-
-            clientRepository.save(client);
-            ClientResource resource = mapper.map(client, ClientResource.class);
-            RegisterClientResponse response = new RegisterClientResponse(resource);
-            return ResponseEntity.ok(response.getResource());
-
-        } catch (Exception e) {
-
-            RegisterResponse response = new RegisterResponse(e.getMessage());
-            return ResponseEntity.badRequest().body(response.getMessage());
-
-        }
-    }
 
     public ResponseEntity<?> registerTechnician(RegisterTechnicianRequest request) {
 
-        if (clientRepository.existsByUsername(request.getUsername())) {
+        if (userRepository.existsByUsername(request.getUsername())) {
             AuthenticateResponse response = new AuthenticateResponse("Username is already used.");
             return ResponseEntity.badRequest()
                     .body(response.getMessage());
         }
 
-        if (clientRepository.existsByEmail(request.getEmail())) {
+        if (userRepository.existsByEmail(request.getEmail())) {
             AuthenticateResponse response = new AuthenticateResponse("Email is already used.");
             return ResponseEntity.badRequest()
                     .body(response.getMessage());
@@ -182,21 +125,12 @@ public class UserServiceImpl implements UserService {
                 throw new ResourceValidationException("Speciality not found");
             }
 
-            Set<String> rolesStringSet = request.getRoles();
-            Set<Role> roles = new HashSet<>();
+            Role role = roleRepository.findAllById(request.getRole());
 
-            if (rolesStringSet == null) {
-                roleRepository.findByName(Roles.ROLE_CLIENT)
-                        .map(roles::add)
-                        .orElseThrow(() -> new RuntimeException("Role not found."));
-            } else {
-                rolesStringSet.forEach(roleString ->
-                        roleRepository.findByName(Roles.valueOf(roleString))
-                                .map(roles::add)
-                                .orElseThrow(() -> new RuntimeException("Role not found.")));
+            if(role == null) {
+                throw new ResourceValidationException("Role not found");
             }
 
-            logger.info("Roles: {}", roles);
 
             Technician technician = new Technician();
             technician.setDisponibility(1);
@@ -207,7 +141,7 @@ public class UserServiceImpl implements UserService {
             technician.setUsername(request.getUsername());
             technician.setEmail(request.getEmail());
             technician.setPassword(encoder.encode(request.getPassword()));
-            technician.setRoles(roles);
+            technician.setRol(role);
             technician.setDni(request.getDni());
             technician.setTelephone_number(request.getTelephone_number());
             technician.setName(request.getName());
