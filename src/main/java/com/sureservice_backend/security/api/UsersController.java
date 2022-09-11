@@ -38,11 +38,6 @@ public class UsersController {
     }
 
 
-    @PostMapping("technician/sign-up")
-    public ResponseEntity<?> registerTechnician(@Valid @RequestBody RegisterTechnicianRequest request) {
-        return userService.registerTechnician(request);
-    }
-
     @GetMapping
     public ResponseEntity<?> getAllUsers(Pageable pageable) {
         Page<UserResource> resources = mapper.modelListToPage(userService.getAll(), pageable);
