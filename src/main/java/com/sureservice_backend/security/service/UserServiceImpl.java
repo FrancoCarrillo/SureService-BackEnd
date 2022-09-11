@@ -32,31 +32,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-
     @Autowired
     UserRepository userRepository;
-
-
-
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    TechnicianRepository technicianRepository;
-
-    @Autowired
-    SpecialityRepository specialityRepository;
 
     @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
     JwtHandler handler;
-
-    @Autowired
-    PasswordEncoder encoder;
 
     @Autowired
     EnhancedModelMapper mapper;
@@ -98,66 +81,6 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.badRequest().body(response.getMessage());
         }
 
-    }
-
-    @Override
-
-
-    public ResponseEntity<?> registerTechnician(RegisterTechnicianRequest request) {
-
-        if (userRepository.existsByUsername(request.getUsername())) {
-            AuthenticateResponse response = new AuthenticateResponse("Username is already used.");
-            return ResponseEntity.badRequest()
-                    .body(response.getMessage());
-        }
-
-        if (userRepository.existsByEmail(request.getEmail())) {
-            AuthenticateResponse response = new AuthenticateResponse("Email is already used.");
-            return ResponseEntity.badRequest()
-                    .body(response.getMessage());
-        }
-
-        try {
-
-            Speciality speciality = specialityRepository.findAllById(request.getSpeciality());
-
-            if(speciality == null){
-                throw new ResourceValidationException("Speciality not found");
-            }
-
-            Role role = roleRepository.findAllById(request.getRole());
-
-            if(role == null) {
-                throw new ResourceValidationException("Role not found");
-            }
-
-
-            Technician technician = new Technician();
-            technician.setDisponibility(1);
-            technician.setSpeciality(speciality);
-            technician.setValoration(0);
-            technician.setProfessional_profile(request.getProfessional_profile());
-            technician.setDistrict(request.getDistrict());
-            technician.setUsername(request.getUsername());
-            technician.setEmail(request.getEmail());
-            technician.setPassword(encoder.encode(request.getPassword()));
-            technician.setRol(role);
-            technician.setDni(request.getDni());
-            technician.setTelephone_number(request.getTelephone_number());
-            technician.setName(request.getName());
-            technician.setLast_name(request.getLast_name());
-
-            technicianRepository.save(technician);
-            TechnicianResource resource = mapper.map(technician, TechnicianResource.class);
-            RegisterTechnicianResponse response = new RegisterTechnicianResponse(resource);
-            return ResponseEntity.ok(response.getResource());
-
-        } catch (Exception e) {
-
-            RegisterResponse response = new RegisterResponse(e.getMessage());
-            return ResponseEntity.badRequest().body(response.getMessage());
-
-        }
     }
 
     public List<User> getAll() {

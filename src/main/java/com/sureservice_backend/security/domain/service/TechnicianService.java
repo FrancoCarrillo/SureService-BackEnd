@@ -1,11 +1,8 @@
 package com.sureservice_backend.security.domain.service;
 
-import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.sureservice_backend.security.domain.model.entity.Technician;
+import com.sureservice_backend.security.domain.service.communication.RegisterTechnicianRequest;
 
-import java.util.List;
-
-public interface TechnicianService extends UserDetailsService {
-    ResponseEntity<?> register(RegisterRequest request);
+public interface TechnicianService {
+    Technician register(RegisterTechnicianRequest request);
 }

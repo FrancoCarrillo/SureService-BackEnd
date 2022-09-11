@@ -47,17 +47,21 @@ public class ClientServiceImpl implements ClientService {
         if(role == null)
             throw new ResourceValidationException("Role not found");
 
-        Client client = new Client();
-        client.setAmount_reservation(0);
-        client.setUsername(request.getUsername());
-        client.setEmail(request.getEmail());
-        client.setPassword(encoder.encode(request.getPassword()));
-        client.setRol(role);
-        client.setDni(request.getDni());
-        client.setTelephone_number(request.getTelephone_number());
-        client.setName(request.getName());
-        client.setLast_name(request.getLast_name());
+        try{
+            Client client = new Client();
+            client.setAmount_reservation(0);
+            client.setUsername(request.getUsername());
+            client.setEmail(request.getEmail());
+            client.setPassword(encoder.encode(request.getPassword()));
+            client.setRol(role);
+            client.setDni(request.getDni());
+            client.setTelephone_number(request.getTelephone_number());
+            client.setName(request.getName());
+            client.setLast_name(request.getLast_name());
 
-        return clientRepository.save(client);
+            return clientRepository.save(client);
+        } catch (Exception e){
+            throw new ResourceValidationException(e.getMessage());
+        }
     }
 }
