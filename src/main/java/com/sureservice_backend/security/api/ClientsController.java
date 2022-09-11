@@ -21,12 +21,10 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/clients")
 public class ClientsController {
 
-    private final UserService userService;
     private final ClientMapper mapper;
     private final ClientService clientService;
 
-    public ClientsController(UserService userService, ClientMapper mapper, ClientService clientService) {
-        this.userService = userService;
+    public ClientsController(ClientMapper mapper, ClientService clientService) {
         this.mapper = mapper;
         this.clientService = clientService;
     }
