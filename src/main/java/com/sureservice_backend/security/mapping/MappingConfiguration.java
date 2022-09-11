@@ -18,9 +18,5 @@ public class MappingConfiguration {
     @Bean
     public TechnicianMapper technicianMapper() {return new TechnicianMapper();}
 
-    @Bean
-    public RoleMapper roleMapper() {
-        return new RoleMapper();
-    }
 
 }
