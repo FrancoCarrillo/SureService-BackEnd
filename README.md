@@ -7,5 +7,4 @@ Repository for the backend of the SureService application, this REST API is made
 ## Authors
 
 - [@FrancoCarrillo](https://www.github.com/FrancoCarrillo)
-- [@vilaron](https://www.github.com/vilaron)
-
+- [@Williamz21](https://github.com/Williamz21)
