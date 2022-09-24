@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Requests", description = "Create, read, update and delete requests")
+@Tag(name = "ServiceRequest", description = "Create, read, update and delete services requests")
 @RestController
 @RequestMapping(value = "api/v1/services")
 public class ServiceRequestController {
