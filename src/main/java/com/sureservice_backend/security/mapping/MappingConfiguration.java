@@ -18,5 +18,6 @@ public class MappingConfiguration {
     @Bean
     public TechnicianMapper technicianMapper() {return new TechnicianMapper();}
 
-
+    @Bean
+    public SpecialityMapper specialityMapper() {return new SpecialityMapper();}
 }
