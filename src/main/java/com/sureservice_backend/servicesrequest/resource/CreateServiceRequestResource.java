@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 @Setter
 public class CreateServiceRequestResource {
     @NotBlank
-    @Size(max = 500)
     private String detail;
 
     private int total_price;

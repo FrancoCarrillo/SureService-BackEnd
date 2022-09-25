@@ -17,7 +17,7 @@ public class Speciality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
+    @Column(length = 20, unique = true)
     private String name;
 
     @OneToMany(mappedBy = "speciality")

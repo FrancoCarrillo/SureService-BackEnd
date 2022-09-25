@@ -2,7 +2,6 @@ package com.sureservice_backend.security.api;
 
 
 import com.sureservice_backend.security.domain.service.ClientService;
-import com.sureservice_backend.security.domain.service.UserService;
 import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
 import com.sureservice_backend.security.mapping.ClientMapper;
 import com.sureservice_backend.security.resource.ClientResource;
