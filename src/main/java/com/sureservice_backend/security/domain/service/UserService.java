@@ -11,5 +11,5 @@ public interface UserService extends UserDetailsService {
 
     ResponseEntity<?> authenticate(AuthenticateRequest request);
     List<User> getAll();
-
+    ResponseEntity<?> delete(Long userId);
 }
