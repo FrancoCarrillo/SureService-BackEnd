@@ -35,7 +35,7 @@ public class TechnicianServiceImpl implements TechnicianService {
         if (userRepository.existsByEmail(request.getEmail()))
             throw new ResourceValidationException("Email is already used.");
 
-        Role role = roleRepository.findAllById(request.getRole());
+        Role role = roleRepository.findAllById(2L);
 
         if(role == null)
             throw new ResourceValidationException("Role not found");

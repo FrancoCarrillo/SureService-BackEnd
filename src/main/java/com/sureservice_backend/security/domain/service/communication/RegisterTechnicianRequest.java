@@ -28,9 +28,6 @@ public class RegisterTechnicianRequest {
     @NotBlank
     private String password;
 
-
-    private Long role;
-
     @NotNull
     @NotBlank
     private String name;
