@@ -39,12 +39,12 @@ public class ServiceRequestController {
     }
 
     @PutMapping("{serviceRequestId}")
-    public ServiceRequestResource updateRequest(@PathVariable Long requestId, @RequestBody UpdateServiceRequestResource request) {
+    public ServiceRequestResource updateRequest(@PathVariable("serviceRequestId") Long requestId, @RequestBody UpdateServiceRequestResource request) {
         return mapper.toResource(serviceRequestService.update(requestId, mapper.toModel(request)));
     }
 
     @DeleteMapping("{serviceRequestId}")
-    public ResponseEntity<?> deleteRequest(@PathVariable Long requestId) {
+    public ResponseEntity<?> deleteRequest(@PathVariable("serviceRequestId") Long requestId) {
         return serviceRequestService.delete(requestId);
     }
 }

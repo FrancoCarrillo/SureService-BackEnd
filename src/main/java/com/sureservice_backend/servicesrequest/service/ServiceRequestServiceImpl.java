@@ -68,7 +68,7 @@ public class ServiceRequestServiceImpl implements ServiceRequestService {
 
         return serviceRequestRepository.findById(serviceRequestId).map(data ->
                 serviceRequestRepository.save(
-                        data.withDetail(serviceRequest.getDetail())
+                        data.withDetail(data.getDetail())
                                 .withTotal_price(serviceRequest.getTotal_price())
                                 .withReservation_price(serviceRequest.getReservation_price())
                                 .withConfirmation(serviceRequest.getConfirmation()))

@@ -21,8 +21,6 @@ public class ServiceRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 500)
     private String detail;
 
     private int total_price;
