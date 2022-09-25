@@ -17,7 +17,6 @@ import javax.validation.constraints.Size;
 public class Technician extends User{
 
     @NotBlank
-    @Size(max = 50)
     private String professional_profile;
 
     private int valoration;

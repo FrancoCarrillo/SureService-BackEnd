@@ -42,7 +42,7 @@ public class ClientServiceImpl implements ClientService {
         if (userRepository.existsByEmail(request.getEmail()))
             throw new ResourceValidationException("Email is already used.");
 
-        Role role = roleRepository.findAllById(request.getRole());
+        Role role = roleRepository.findAllById(1L);
 
         if(role == null)
             throw new ResourceValidationException("Role not found");

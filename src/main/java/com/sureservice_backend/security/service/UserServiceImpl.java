@@ -11,6 +11,7 @@ import com.sureservice_backend.security.resource.AuthenticateResource;
 import com.sureservice_backend.security.resource.ClientResource;
 import com.sureservice_backend.security.resource.TechnicianResource;
 import com.sureservice_backend.security.resource.UserResource;
+import com.sureservice_backend.shared.exception.ResourceNotFoundException;
 import com.sureservice_backend.shared.exception.ResourceValidationException;
 import com.sureservice_backend.shared.mapping.EnhancedModelMapper;
 import org.slf4j.Logger;
@@ -87,6 +88,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @Override
+    public ResponseEntity<?> delete(Long userId) {
+        return userRepository.findById(userId).map(announcement-> {
+            userRepository.delete(announcement);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(()-> new ResourceNotFoundException("User", userId));
+    }
 
 
 }
