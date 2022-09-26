@@ -21,6 +21,7 @@ public class UserMapper implements Serializable {
 
     Converter<Role, String> roleToString = new AbstractConverter<>() {
 
+        @Override
         protected String convert(Role role) {
             return role == null ? null : role.getName().name();
         }
