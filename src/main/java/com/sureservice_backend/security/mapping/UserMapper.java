@@ -19,24 +19,24 @@ public class UserMapper implements Serializable {
     @Autowired
     EnhancedModelMapper mapper;
 
-    Converter<Role, String> roleToString = new AbstractConverter<>() {
-
-        @Override
-        protected String convert(Role role) {
-            return role == null ? null : role.getName().name();
-        }
-    };
+    //Converter<Role, String> roleToString = new AbstractConverter<>() {
+//
+    //    @Override
+    //    protected String convert(Role role) {
+    //        return role == null ? null : role.getName().name();
+    //    }
+    //};
 
     public UserResource toResource(User model) {
 
-        mapper.addConverter(roleToString);
+        //mapper.addConverter(roleToString);
         return mapper.map(model, UserResource.class);
 
     }
 
     public Page<UserResource> modelListToPage(List<User> modelList, Pageable pageable) {
 
-        mapper.addConverter(roleToString);
+        //mapper.addConverter(roleToString);
         return new PageImpl<>(mapper.mapList(modelList, UserResource.class), pageable, modelList.size());
     }
 
