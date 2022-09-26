@@ -2,7 +2,9 @@ package com.sureservice_backend.security.api;
 
 import com.sureservice_backend.security.domain.service.TechnicianService;
 import com.sureservice_backend.security.domain.service.communication.RegisterTechnicianRequest;
+import com.sureservice_backend.security.domain.service.communication.UpdateTechnicianRequest;
 import com.sureservice_backend.security.mapping.TechnicianMapper;
+import com.sureservice_backend.security.resource.TechnicianResource;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,11 @@ public class TechnicianController {
     @PostMapping("sign-up")
     public ResponseEntity<?> registerTechnician(@Valid @RequestBody RegisterTechnicianRequest request) {
         return new ResponseEntity<>(mapper.toResource(technicianService.register(request)) , HttpStatus.CREATED) ;
+    }
+
+    @PutMapping("{technicianId}")
+    public TechnicianResource update(@PathVariable Long technicianId, @RequestBody UpdateTechnicianRequest technicianResource){
+        return mapper.toResource(technicianService.update(technicianId, technicianResource));
     }
 
 }

@@ -6,12 +6,10 @@ import com.sureservice_backend.security.domain.persistence.ClientRepository;
 import com.sureservice_backend.security.domain.persistence.RoleRepository;
 import com.sureservice_backend.security.domain.persistence.UserRepository;
 import com.sureservice_backend.security.domain.service.ClientService;
-import com.sureservice_backend.security.domain.service.communication.AuthenticateResponse;
-import com.sureservice_backend.security.domain.service.communication.RegisterClientResponse;
-import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
-import com.sureservice_backend.security.domain.service.communication.RegisterResponse;
+import com.sureservice_backend.security.domain.service.communication.*;
 import com.sureservice_backend.security.mapping.ClientMapper;
 import com.sureservice_backend.security.resource.ClientResource;
+import com.sureservice_backend.shared.exception.ResourceNotFoundException;
 import com.sureservice_backend.shared.exception.ResourceValidationException;
 import com.sureservice_backend.shared.mapping.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +61,28 @@ public class ClientServiceImpl implements ClientService {
         } catch (Exception e){
             throw new ResourceValidationException(e.getMessage());
         }
+    }
+
+    @Override
+    public Client update(Long clientId, UpdateClientRequest request) {
+
+        Role role = roleRepository.findAllById(1L);
+
+
+        Client client = new Client();
+        client.setId(clientId);
+        client.setAmount_reservation(request.getAmount_reservation());
+        client.setUsername(request.getUsername());
+        client.setEmail(request.getEmail());
+        client.setPassword(encoder.encode(request.getPassword()));
+        client.setRol(role);
+        client.setDni(request.getDni());
+        client.setTelephone_number(request.getTelephone_number());
+        client.setName(request.getName());
+        client.setLast_name(request.getLast_name());
+
+        return clientRepository.findById(clientId).map( data->
+            clientRepository.save(client)
+        ).orElseThrow(()-> new ResourceNotFoundException("Client", clientId));
     }
 }
