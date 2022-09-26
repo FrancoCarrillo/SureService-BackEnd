@@ -3,8 +3,11 @@ package com.sureservice_backend.security.api;
 
 import com.sureservice_backend.security.domain.service.ClientService;
 import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
+import com.sureservice_backend.security.domain.service.communication.UpdateClientRequest;
+import com.sureservice_backend.security.domain.service.communication.UpdateTechnicianRequest;
 import com.sureservice_backend.security.mapping.ClientMapper;
 import com.sureservice_backend.security.resource.ClientResource;
+import com.sureservice_backend.security.resource.TechnicianResource;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -32,6 +35,11 @@ public class ClientsController {
     @PostMapping("sign-up")
     public ResponseEntity<ClientResource> registerClient(@Valid @RequestBody RegisterRequest request) {
         return new ResponseEntity<>(mapper.toResource(clientService.register(request)) , HttpStatus.CREATED) ;
+    }
+
+    @PutMapping("{clientId}")
+    public ClientResource update(@PathVariable Long clientId, @RequestBody UpdateClientRequest clientRequest){
+        return mapper.toResource(clientService.update(clientId, clientRequest));
     }
 
 

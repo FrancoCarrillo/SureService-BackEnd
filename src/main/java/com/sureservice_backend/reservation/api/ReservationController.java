@@ -1,4 +1,4 @@
-package com.sureservice_backend.reservation.service.api;
+package com.sureservice_backend.reservation.api;
 
 import com.sureservice_backend.reservation.domain.service.ReservationService;
 import com.sureservice_backend.reservation.mapping.ReservationMapper;
