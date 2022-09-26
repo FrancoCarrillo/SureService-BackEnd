@@ -20,7 +20,7 @@ public class UserMapper implements Serializable {
     EnhancedModelMapper mapper;
 
     Converter<Role, String> roleToString = new AbstractConverter<>() {
-        @Override
+
         protected String convert(Role role) {
             return role == null ? null : role.getName().name();
         }
