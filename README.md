@@ -11,4 +11,5 @@ Repository for the backend of the SureService application, this REST API is made
 
 ## URL
 
-SureService Backend documented with Swagger : [SureService](https://sure-service.herokuapp.com/swagger-ui/index.html#/)
+- SureService API URL : [https://sure-service.herokuapp.com](https://sure-service.herokuapp.com)
+- SureService Backend documented with Swagger : [SureService](https://sure-service.herokuapp.com/swagger-ui/index.html#/)
