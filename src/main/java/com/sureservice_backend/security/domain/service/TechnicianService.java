@@ -8,4 +8,6 @@ public interface TechnicianService {
     Technician register(RegisterTechnicianRequest request);
 
     Technician update(Long technicianId, UpdateTechnicianRequest technician);
+
+    Technician getById(Long id);
 }

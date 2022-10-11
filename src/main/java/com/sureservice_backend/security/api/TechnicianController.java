@@ -1,5 +1,7 @@
 package com.sureservice_backend.security.api;
 
+import com.sureservice_backend.security.domain.model.entity.Client;
+import com.sureservice_backend.security.domain.model.entity.Technician;
 import com.sureservice_backend.security.domain.service.TechnicianService;
 import com.sureservice_backend.security.domain.service.communication.RegisterTechnicianRequest;
 import com.sureservice_backend.security.domain.service.communication.UpdateTechnicianRequest;
@@ -29,6 +31,10 @@ public class TechnicianController {
         this.technicianService = technicianService;
     }
 
+    @GetMapping("/{id}")
+    public Technician getById(@PathVariable Long id) {
+        return technicianService.getById(id);
+    }
 
     @PostMapping("sign-up")
     public ResponseEntity<?> registerTechnician(@Valid @RequestBody RegisterTechnicianRequest request) {

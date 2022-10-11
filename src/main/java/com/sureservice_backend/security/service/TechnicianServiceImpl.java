@@ -111,4 +111,10 @@ public class TechnicianServiceImpl implements TechnicianService {
                 technicianRepository.save(technician)
         ).orElseThrow(()-> new ResourceNotFoundException(ENTITY, technicianId));
     }
+
+    @Override
+    public Technician getById(Long id) {
+        return technicianRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
+    }
 }
