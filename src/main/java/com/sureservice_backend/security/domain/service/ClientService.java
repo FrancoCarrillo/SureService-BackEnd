@@ -11,4 +11,6 @@ public interface ClientService {
     Client register(RegisterRequest request);
 
     Client update(Long clientId, UpdateClientRequest client);
+
+    Client getById(Long id);
 }
