@@ -7,13 +7,17 @@ import com.sureservice_backend.security.domain.service.communication.RegisterTec
 import com.sureservice_backend.security.domain.service.communication.UpdateTechnicianRequest;
 import com.sureservice_backend.security.mapping.TechnicianMapper;
 import com.sureservice_backend.security.resource.TechnicianResource;
+import com.sureservice_backend.security.resource.UserResource;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @SecurityRequirement(name = "sureservice")
 @Tag(name = "Technician", description = "sign-up, sign-in, update technician")
@@ -29,6 +33,11 @@ public class TechnicianController {
     public TechnicianController(TechnicianMapper mapper, TechnicianService technicianService) {
         this.mapper = mapper;
         this.technicianService = technicianService;
+    }
+
+    @GetMapping
+    public List<Technician> getAllTechnicians() {
+        return technicianService.getAll();
     }
 
     @GetMapping("/{id}")
