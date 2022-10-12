@@ -5,6 +5,7 @@ import com.sureservice_backend.reservation.mapping.ReservationMapper;
 import com.sureservice_backend.reservation.resource.CreateReservationResource;
 import com.sureservice_backend.reservation.resource.ReservationResource;
 import com.sureservice_backend.reservation.resource.UpdateReservationResource;
+import com.sureservice_backend.servicesrequest.resource.ServiceRequestResource;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,16 @@ public class ReservationController {
     @GetMapping
     public List<ReservationResource> getAll() {
         return mapper.modelListToResource(reservationService.getAll());
+    }
+
+    @GetMapping("technician/{technicianId}")
+    public List<ReservationResource> getByTechnicianId(@PathVariable Long technicianId) {
+        return mapper.modelListToResource(reservationService.getAllByTechnicianId(technicianId));
+    }
+
+    @GetMapping("client/{clientId}")
+    public List<ReservationResource> getByClientId(@PathVariable Long clientId) {
+        return mapper.modelListToResource(reservationService.getAllByClientId(clientId));
     }
 
     @GetMapping("{reservationId}")

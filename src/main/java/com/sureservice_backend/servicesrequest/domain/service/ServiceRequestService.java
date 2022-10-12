@@ -9,6 +9,10 @@ public interface ServiceRequestService {
     ServiceRequest getById(Long serviceRequestId);
     List<ServiceRequest> getAll();
 
+    List<ServiceRequest> getAllByTechnicianId(Long technicianId);
+
+    List<ServiceRequest> getAllByClientId(Long clientId);
+
     //post, put, delete
     ServiceRequest create(Long clientId, Long technicianId, ServiceRequest serviceRequest);
     ServiceRequest update(Long serviceRequestId, ServiceRequest serviceRequest);

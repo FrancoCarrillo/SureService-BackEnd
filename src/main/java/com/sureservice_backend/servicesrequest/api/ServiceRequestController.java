@@ -27,6 +27,17 @@ public class ServiceRequestController {
     public List<ServiceRequestResource> getAll() {
         return mapper.modelListToResource(serviceRequestService.getAll());
     }
+
+
+    @GetMapping("technician/{technicianId}")
+    public List<ServiceRequestResource> getAllByTechnicianId(@PathVariable Long technicianId) {
+        return mapper.modelListToResource(serviceRequestService.getAllByTechnicianId(technicianId));
+    }
+
+    @GetMapping("client/{clientId}")
+    public List<ServiceRequestResource> getAllByClientId(@PathVariable Long clientId) {
+        return mapper.modelListToResource(serviceRequestService.getAllByClientId(clientId));
+    }
     @GetMapping("{serviceRequestId}")
     public ServiceRequestResource getById(@PathVariable Long serviceRequestId) {
         return mapper.toResource(serviceRequestService.getById(serviceRequestId));

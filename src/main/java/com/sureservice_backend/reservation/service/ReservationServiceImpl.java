@@ -40,6 +40,16 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public List<Reservation> getAllByTechnicianId(Long technicianId) {
+        return reservationRepository.findByTechnicianId(technicianId);
+    }
+
+    @Override
+    public List<Reservation> getAllByClientId(Long clientId) {
+        return reservationRepository.findByClientId(clientId);
+    }
+
+    @Override
     public Reservation create(Long serviceRequestId, Reservation reservation) {
         Set<ConstraintViolation<Reservation>> violations = validator.validate(reservation);
 

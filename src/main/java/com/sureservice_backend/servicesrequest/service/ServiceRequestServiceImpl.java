@@ -44,6 +44,16 @@ public class ServiceRequestServiceImpl implements ServiceRequestService {
     }
 
     @Override
+    public List<ServiceRequest> getAllByTechnicianId(Long technicianId) {
+        return serviceRequestRepository.findByTechnicianId(technicianId);
+    }
+
+    @Override
+    public List<ServiceRequest> getAllByClientId(Long clientId) {
+        return serviceRequestRepository.findByClientId(clientId);
+    }
+
+    @Override
     public ServiceRequest create(Long clientId, Long technicianId, ServiceRequest serviceRequest) {
         Set<ConstraintViolation<ServiceRequest>> violations = validator.validate(serviceRequest);
 

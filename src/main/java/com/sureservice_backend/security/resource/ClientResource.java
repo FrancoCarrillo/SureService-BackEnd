@@ -10,6 +10,6 @@ public class ClientResource {
     private Long id;
     private String username;
     private String email;
-    private Role role;
+    private Role rol;
     private int amount_reservation;
 }
