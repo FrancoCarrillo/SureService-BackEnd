@@ -8,12 +8,9 @@ import com.sureservice_backend.security.domain.persistence.UserRepository;
 import com.sureservice_backend.security.domain.service.ClientService;
 import com.sureservice_backend.security.domain.service.communication.*;
 import com.sureservice_backend.security.mapping.ClientMapper;
-import com.sureservice_backend.security.resource.ClientResource;
 import com.sureservice_backend.shared.exception.ResourceNotFoundException;
 import com.sureservice_backend.shared.exception.ResourceValidationException;
-import com.sureservice_backend.shared.mapping.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -84,5 +81,11 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.findById(clientId).map( data->
             clientRepository.save(client)
         ).orElseThrow(()-> new ResourceNotFoundException("Client", clientId));
+    }
+
+    @Override
+    public Client getById(Long id) {
+        return clientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Client", id));
     }
 }

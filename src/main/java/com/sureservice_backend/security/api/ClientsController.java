@@ -1,6 +1,7 @@
 package com.sureservice_backend.security.api;
 
 
+import com.sureservice_backend.security.domain.model.entity.Client;
 import com.sureservice_backend.security.domain.service.ClientService;
 import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
 import com.sureservice_backend.security.domain.service.communication.UpdateClientRequest;
@@ -31,6 +32,11 @@ public class ClientsController {
         this.clientService = clientService;
     }
 
+
+    @GetMapping("/{id}")
+    public Client getById(@PathVariable Long id) {
+        return clientService.getById(id);
+    }
 
     @PostMapping("sign-up")
     public ResponseEntity<ClientResource> registerClient(@Valid @RequestBody RegisterRequest request) {

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -40,6 +41,11 @@ public class TechnicianServiceImpl implements TechnicianService {
 
     public TechnicianServiceImpl(Validator validator) {
         this.validator = validator;
+    }
+
+    @Override
+    public List<Technician> getAll() {
+        return technicianRepository.findAll();
     }
 
     @Override
@@ -111,4 +117,12 @@ public class TechnicianServiceImpl implements TechnicianService {
                 technicianRepository.save(technician)
         ).orElseThrow(()-> new ResourceNotFoundException(ENTITY, technicianId));
     }
+
+    @Override
+    public Technician getById(Long id) {
+        return technicianRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
+    }
+
+
 }
