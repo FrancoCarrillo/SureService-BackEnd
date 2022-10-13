@@ -40,6 +40,21 @@ public class TechnicianController {
         return technicianService.getAll();
     }
 
+    @GetMapping("valoration/{valoration}")
+    public List<Technician> getTechnicianByValoration(@PathVariable Integer valoration) {
+        return technicianService.getByValoration(valoration);
+    }
+
+    @GetMapping("speciality/{specialityId}")
+    public List<Technician> getTechnicianBySpeciality(@PathVariable Long specialityId) {
+        return technicianService.getByAllSpeciality(specialityId);
+    }
+
+    @GetMapping("district/{districtName}")
+    public List<Technician> getTechnicianByDistrict(@PathVariable String districtName) {
+        return technicianService.getByDistrict(districtName);
+    }
+
     @GetMapping("/{id}")
     public Technician getById(@PathVariable Long id) {
         return technicianService.getById(id);

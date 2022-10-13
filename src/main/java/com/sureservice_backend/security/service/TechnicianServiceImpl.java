@@ -49,6 +49,24 @@ public class TechnicianServiceImpl implements TechnicianService {
     }
 
     @Override
+    public List<Technician> getByValoration(Integer valoration) {
+        return technicianRepository.findAllByValoration(valoration);
+    }
+
+    @Override
+    public List<Technician> getByAllSpeciality(Long specialityId) {
+
+        Speciality speciality = specialityRepository.findAllById(specialityId);
+
+        return technicianRepository.findAllBySpeciality(speciality);
+    }
+
+    @Override
+    public List<Technician> getByDistrict(String districtName) {
+        return technicianRepository.findAllByDistrict(districtName);
+    }
+
+    @Override
     public Technician register(RegisterTechnicianRequest request) {
         if (userRepository.existsByUsername(request.getUsername()))
             throw new ResourceValidationException("Username is already used.");

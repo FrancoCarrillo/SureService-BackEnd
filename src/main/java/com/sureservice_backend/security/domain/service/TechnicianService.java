@@ -14,4 +14,10 @@ public interface TechnicianService {
     Technician getById(Long id);
 
     List<Technician> getAll();
+
+    List<Technician> getByValoration(Integer valoration);
+
+    List<Technician> getByAllSpeciality(Long specialityId);
+
+    List<Technician> getByDistrict(String districtName);
 }
