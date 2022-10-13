@@ -1,11 +1,8 @@
 package com.sureservice_backend.security.mapping;
 
-import com.sureservice_backend.security.domain.model.entity.Role;
 import com.sureservice_backend.security.domain.model.entity.User;
 import com.sureservice_backend.security.resource.UserResource;
 import com.sureservice_backend.shared.mapping.EnhancedModelMapper;
-import org.modelmapper.AbstractConverter;
-import org.modelmapper.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
