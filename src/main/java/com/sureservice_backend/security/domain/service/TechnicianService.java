@@ -20,4 +20,6 @@ public interface TechnicianService {
     List<Technician> getByAllSpeciality(Long specialityId);
 
     List<Technician> getByDistrict(String districtName);
+
+    List<Technician> getByDisponibilityAndDistrictAndBySpeciality(int disponibility,String districtName,Long specialityId);
 }

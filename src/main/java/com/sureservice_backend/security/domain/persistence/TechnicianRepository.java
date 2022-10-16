@@ -20,4 +20,6 @@ public interface TechnicianRepository extends JpaRepository<Technician, Long> {
     List<Technician> findAllByValoration(Integer valoration);
 
     List<Technician> findAllBySpeciality(Speciality speciality);
+
+    List<Technician> findAllByDisponibilityAndDistrictAndSpeciality(int disponibility,String district,Speciality speciality);
 }

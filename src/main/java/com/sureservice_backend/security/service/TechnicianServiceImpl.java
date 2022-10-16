@@ -67,6 +67,12 @@ public class TechnicianServiceImpl implements TechnicianService {
     }
 
     @Override
+    public List<Technician> getByDisponibilityAndDistrictAndBySpeciality(int disponibility, String districtName, Long specialityId) {
+        Speciality speciality = specialityRepository.findAllById(specialityId);
+        return technicianRepository.findAllByDisponibilityAndDistrictAndSpeciality(disponibility,districtName,speciality);
+    }
+
+    @Override
     public Technician register(RegisterTechnicianRequest request) {
         if (userRepository.existsByUsername(request.getUsername()))
             throw new ResourceValidationException("Username is already used.");
