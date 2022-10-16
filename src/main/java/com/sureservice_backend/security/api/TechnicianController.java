@@ -55,6 +55,12 @@ public class TechnicianController {
         return technicianService.getByDistrict(districtName);
     }
 
+    @GetMapping("disponibility/{disponibility}/district/{districtName}/speciality/{specialityId}")
+    public List<Technician> getAllTechniciansByDisponibilityAndDistrictAndSpeciality(@PathVariable int disponibility,@PathVariable String districtName,
+            @PathVariable Long specialityId) {
+        return technicianService.getByDisponibilityAndDistrictAndBySpeciality(disponibility,districtName,specialityId);
+    }
+
     @GetMapping("/{id}")
     public Technician getById(@PathVariable Long id) {
         return technicianService.getById(id);
