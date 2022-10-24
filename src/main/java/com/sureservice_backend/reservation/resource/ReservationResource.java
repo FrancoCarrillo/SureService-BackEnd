@@ -11,5 +11,6 @@ import java.util.Date;
 public class ReservationResource {
     private Long id;
     private Date date_of;
+    private Integer status;
     private ServiceRequestResource serviceRequest;
 }
