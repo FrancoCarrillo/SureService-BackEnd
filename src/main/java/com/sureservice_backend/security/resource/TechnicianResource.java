@@ -10,7 +10,11 @@ import lombok.Setter;
 public class TechnicianResource {
     private Long id;
     private String username;
+    private String name;
+    private String last_name;
     private String email;
+    private String dni;
+    private String telephone_number;
     private Role rol;
     private String professional_profile;
     private int valoration;

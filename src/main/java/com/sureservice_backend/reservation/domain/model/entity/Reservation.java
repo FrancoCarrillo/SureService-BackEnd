@@ -21,6 +21,8 @@ public class Reservation {
 
     private Date date_of;
 
+    private Integer status=0;
+
     @OneToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name= "service_request_id", nullable = false)
     @JsonIgnore

@@ -71,7 +71,9 @@ public class ReservationServiceImpl implements ReservationService {
 
         return reservationRepository.findById(reservationId).map(data ->
                 reservationRepository.save(
-                        data.withDate_of(reservation.getDate_of()))
+                        data.withDate_of(reservation.getDate_of())
+                                .withStatus(reservation.getStatus())
+                )
         ).orElseThrow(() -> new ResourceNotFoundException(ENTITY, reservationId));
     }
 

@@ -8,4 +8,5 @@ import java.util.Date;
 @Setter
 public class UpdateReservationResource {
     private Date date_of;
+    private Integer status;
 }
