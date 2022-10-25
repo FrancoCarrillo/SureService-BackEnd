@@ -71,6 +71,9 @@ public class TechnicianController {
         return new ResponseEntity<>(mapper.toResource(technicianService.register(request)) , HttpStatus.CREATED) ;
     }
 
+
+
+    @CrossOrigin(origins = "*")
     @PutMapping("{technicianId}")
     public TechnicianResource update(@PathVariable Long technicianId, @RequestBody UpdateTechnicianRequest technicianResource){
         return mapper.toResource(technicianService.update(technicianId, technicianResource));
