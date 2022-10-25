@@ -12,8 +12,8 @@ import java.util.Optional;
 @Repository
 public interface ReservationRepository  extends JpaRepository<Reservation,Long> {
 
-    @Query(value = "SELECT * FROM reservation as r, services_request as sr Where sr.client_id=:clientId", nativeQuery=true)
+    @Query(value = "SELECT * FROM reservation as r, services_request as sr Where r.service_request_id=sr.id and sr.client_id=:clientId", nativeQuery=true)
     List<Reservation> findByClientId(Long clientId);
-    @Query(value = "SELECT * FROM reservation as r, services_request as sr Where sr.technician_id=:technicianId", nativeQuery=true)
+    @Query(value = "SELECT * FROM reservation as r, services_request as sr Where r.service_request_id=sr.id and sr.technician_id=:technicianId", nativeQuery=true)
     List<Reservation> findByTechnicianId(Long technicianId);
 }
