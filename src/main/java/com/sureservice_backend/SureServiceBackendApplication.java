@@ -8,9 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -30,14 +27,7 @@ public class SureServiceBackendApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowCredentials(true)
-						.allowedOrigins("*")
-						.allowedHeaders("*")
-						.allowedMethods("OPTIONS")
-						.allowedMethods("GET")
-						.allowedMethods("POST")
-						.allowedMethods("PUT")
-						.allowedMethods("DELETE");
+						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
 			}
 		};
 	}
