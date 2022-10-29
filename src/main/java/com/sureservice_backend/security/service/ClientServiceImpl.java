@@ -66,12 +66,12 @@ public class ClientServiceImpl implements ClientService {
         Role role = roleRepository.findAllById(1L);
 
 
-        Client client = new Client();
+
+        Client client = clientRepository.getById(clientId);
         client.setId(clientId);
         client.setAmount_reservation(request.getAmount_reservation());
         client.setUsername(request.getUsername());
         client.setEmail(request.getEmail());
-        client.setPassword(encoder.encode(request.getPassword()));
         client.setRol(role);
         client.setDni(request.getDni());
         client.setTelephone_number(request.getTelephone_number());
