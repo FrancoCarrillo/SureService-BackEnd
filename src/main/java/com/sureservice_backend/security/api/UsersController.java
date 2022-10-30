@@ -1,5 +1,6 @@
 package com.sureservice_backend.security.api;
 
+import com.sureservice_backend.security.domain.model.entity.User;
 import com.sureservice_backend.security.domain.service.UserService;
 import com.sureservice_backend.security.domain.service.communication.AuthenticateRequest;
 import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
@@ -15,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @SecurityRequirement(name = "sureservice")
 @Tag(name = "Users", description = "Create, read, update and delete users")
@@ -38,10 +40,9 @@ public class UsersController {
     }
 
 
-    @GetMapping
-    public ResponseEntity<?> getAllUsers(Pageable pageable) {
-        Page<UserResource> resources = mapper.modelListToPage(userService.getAll(), pageable);
-        return ResponseEntity.ok(resources);
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return mapper.modelListToResource(userService.getAll());
     }
 
 

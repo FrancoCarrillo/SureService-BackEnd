@@ -2,6 +2,7 @@ package com.sureservice_backend.security.domain.service;
 
 import com.sureservice_backend.security.domain.model.entity.User;
 import com.sureservice_backend.security.domain.service.communication.AuthenticateRequest;
+import com.sureservice_backend.security.resource.UserResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
