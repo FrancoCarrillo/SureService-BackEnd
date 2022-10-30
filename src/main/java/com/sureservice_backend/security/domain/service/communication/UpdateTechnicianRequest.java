@@ -22,10 +22,6 @@ public class UpdateTechnicianRequest {
 
     @NotNull
     @NotBlank
-    private String password;
-
-    @NotNull
-    @NotBlank
     private String name;
 
     @NotNull

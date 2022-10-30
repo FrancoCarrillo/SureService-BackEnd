@@ -19,10 +19,6 @@ public class UpdateClientRequest {
     @Email
     private String email;
 
-    @NotNull
-    @NotBlank
-    private String password;
-
 
     @NotNull
     @NotBlank

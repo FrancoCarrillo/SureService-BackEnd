@@ -1,21 +1,15 @@
 package com.sureservice_backend.security.service;
 
 import com.sureservice_backend.security.domain.model.entity.*;
-import com.sureservice_backend.security.domain.model.enumeration.Roles;
 import com.sureservice_backend.security.domain.persistence.*;
 import com.sureservice_backend.security.domain.service.UserService;
 import com.sureservice_backend.security.domain.service.communication.*;
 import com.sureservice_backend.security.middleware.JwtHandler;
 import com.sureservice_backend.security.middleware.UserDetailsImpl;
 import com.sureservice_backend.security.resource.AuthenticateResource;
-import com.sureservice_backend.security.resource.ClientResource;
-import com.sureservice_backend.security.resource.TechnicianResource;
-import com.sureservice_backend.security.resource.UserResource;
 import com.sureservice_backend.shared.exception.ResourceNotFoundException;
 import com.sureservice_backend.shared.exception.ResourceValidationException;
 import com.sureservice_backend.shared.mapping.EnhancedModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +36,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     JwtHandler handler;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @Autowired
     EnhancedModelMapper mapper;
@@ -94,6 +92,26 @@ public class UserServiceImpl implements UserService {
             userRepository.delete(announcement);
             return ResponseEntity.ok().build();
         }).orElseThrow(()-> new ResourceNotFoundException("User", userId));
+    }
+
+    @Override
+    public User updatePassword(Long userId, UpdatePasswordRequest request) {
+
+        User user = userRepository.getById(userId);
+
+        if(!Objects.equals(request.getNewPassword(), request.getConfirmPassword())){
+            throw new ResourceValidationException("The passwords doesn't match");
+        }
+
+        try {
+            user.setPassword(encoder.encode(request.getNewPassword()));
+
+            return userRepository.save(user);
+
+        } catch (Exception e){
+            throw new ResourceValidationException(e.getMessage());
+        }
+
     }
 
 
