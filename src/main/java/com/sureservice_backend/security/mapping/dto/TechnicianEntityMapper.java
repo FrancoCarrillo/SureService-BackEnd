@@ -15,8 +15,24 @@ public class TechnicianEntityMapper {
     private String district;
     private int disponibility;
     private Speciality speciality;
+    private String name;
+    private String last_name;
+    private String dni;
+    private String telephone_number;
 
-    public TechnicianEntityMapper(Long id, String username, String email, Role rol, String professional_profile, int valoration, String district, int disponibility, Speciality speciality) {
+    public TechnicianEntityMapper(Long id,
+                                  String username,
+                                  String email,
+                                  Role rol,
+                                  String professional_profile,
+                                  int valoration,
+                                  String district,
+                                  int disponibility,
+                                  Speciality speciality,
+                                  String name,
+                                  String last_name,
+                                  String dni,
+                                  String telephone_number) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -26,5 +42,9 @@ public class TechnicianEntityMapper {
         this.district = district;
         this.disponibility = disponibility;
         this.speciality = speciality;
+        this.name = name;
+        this.last_name = last_name;
+        this.dni = dni;
+        this.telephone_number = telephone_number;
     }
 }

@@ -16,7 +16,8 @@ public class TechnicianMapper implements Serializable {
     EnhancedModelMapper mapper;
     public TechnicianResource toResource(Technician model) {
         TechnicianEntityMapper technician = new TechnicianEntityMapper(model.getId(), model.getUsername(), model.getEmail(),
-                model.getRol(), model.getProfessional_profile(), model.getValoration(), model.getDistrict(), model.getDisponibility(), model.getSpeciality() );
+                model.getRol(), model.getProfessional_profile(), model.getValoration(), model.getDistrict(), model.getDisponibility(), model.getSpeciality(),
+                model.getName(), model.getLast_name(), model.getDni(), model.getEmail());
 
 
         return mapper.map(technician, TechnicianResource.class);

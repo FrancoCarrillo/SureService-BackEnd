@@ -1,0 +1,18 @@
+package com.sureservice_backend.security.domain.service.communication;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Getter
+@Setter
+public class UpdatePasswordRequest {
+    @NotNull
+    @NotBlank
+    private String newPassword;
+    @NotNull
+    @NotBlank
+    private String confirmPassword;
+}
