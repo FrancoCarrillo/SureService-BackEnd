@@ -5,6 +5,7 @@ import com.sureservice_backend.security.domain.service.UserService;
 import com.sureservice_backend.security.domain.service.communication.AuthenticateRequest;
 import com.sureservice_backend.security.domain.service.communication.RegisterRequest;
 import com.sureservice_backend.security.domain.service.communication.RegisterTechnicianRequest;
+import com.sureservice_backend.security.domain.service.communication.UpdatePasswordRequest;
 import com.sureservice_backend.security.mapping.UserMapper;
 import com.sureservice_backend.security.resource.UserResource;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -22,7 +23,7 @@ import java.util.List;
 @Tag(name = "Users", description = "Create, read, update and delete users")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 public class UsersController {
 
     private final UserService userService;
@@ -39,8 +40,12 @@ public class UsersController {
         return userService.authenticate(request);
     }
 
+    @PutMapping("/password/{userId}")
+    public UserResource updatePassword(@PathVariable Long userId, @RequestBody UpdatePasswordRequest request){
+        return mapper.toResource(userService.updatePassword(userId, request));
+    }
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getAllUsers() {
         return mapper.modelListToResource(userService.getAll());
     }

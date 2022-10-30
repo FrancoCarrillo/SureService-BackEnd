@@ -1,17 +1,13 @@
 package com.sureservice_backend.security.api;
 
-import com.sureservice_backend.security.domain.model.entity.Client;
 import com.sureservice_backend.security.domain.model.entity.Technician;
 import com.sureservice_backend.security.domain.service.TechnicianService;
 import com.sureservice_backend.security.domain.service.communication.RegisterTechnicianRequest;
 import com.sureservice_backend.security.domain.service.communication.UpdateTechnicianRequest;
 import com.sureservice_backend.security.mapping.TechnicianMapper;
 import com.sureservice_backend.security.resource.TechnicianResource;
-import com.sureservice_backend.security.resource.UserResource;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
