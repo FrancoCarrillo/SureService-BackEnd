@@ -121,7 +121,7 @@ public class TechnicianServiceImpl implements TechnicianService {
         Role role = roleRepository.findAllById(2L);
         Speciality speciality = specialityRepository.findAllById(request.getSpeciality());
 
-        Technician technician = new Technician();
+        Technician technician = technicianRepository.getById(technicianId);
         technician.setId(technicianId);
         technician.setDisponibility(request.getDisponibility());
         technician.setSpeciality(speciality);
@@ -130,7 +130,6 @@ public class TechnicianServiceImpl implements TechnicianService {
         technician.setDistrict(request.getDistrict());
         technician.setUsername(request.getUsername());
         technician.setEmail(request.getEmail());
-        technician.setPassword(encoder.encode(request.getPassword()));
         technician.setRol(role);
         technician.setDni(request.getDni());
         technician.setTelephone_number(request.getTelephone_number());
