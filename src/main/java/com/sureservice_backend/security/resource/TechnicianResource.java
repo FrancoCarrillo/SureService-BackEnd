@@ -22,4 +22,5 @@ public class TechnicianResource {
     private int disponibility;
     private Speciality speciality;
     private String image_url;
+    private String image_Id;
 }

@@ -57,6 +57,9 @@ public class User extends AuditModel {
     @NotBlank
     private String image_url;
 
+    @NotBlank
+    private String image_Id;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rol_id", nullable = false)
     private Role rol;

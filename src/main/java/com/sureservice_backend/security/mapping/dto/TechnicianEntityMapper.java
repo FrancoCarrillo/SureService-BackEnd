@@ -20,7 +20,9 @@ public class TechnicianEntityMapper {
     private String dni;
     private String telephone_number;
     private String image_url;
+    private String image_Id;
     public TechnicianEntityMapper(Long id,
+                                  String image_Id,
                                   String username,
                                   String email,
                                   Role rol,
@@ -49,5 +51,6 @@ public class TechnicianEntityMapper {
         this.dni = dni;
         this.telephone_number = telephone_number;
         this.image_url = image_url;
+        this.image_Id = image_Id;
     }
 }
