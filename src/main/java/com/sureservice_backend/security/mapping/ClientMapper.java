@@ -15,7 +15,7 @@ public class ClientMapper implements Serializable {
 
     public ClientResource toResource(Client model) {
         ClientEntityMapper client = new ClientEntityMapper(model.getId(), model.getUsername(), model.getEmail(),
-                model.getRol(), model.getAmount_reservation(), model.getName(), model.getLast_name(), model.getTelephone_number(), model.getDni());
+                model.getRol(), model.getAmount_reservation(), model.getName(), model.getLast_name(), model.getTelephone_number(), model.getDni(), model.getImage_url());
         return mapper.map(client, ClientResource.class);
     }
 

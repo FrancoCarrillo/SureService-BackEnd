@@ -21,4 +21,5 @@ public class TechnicianResource {
     private String district;
     private int disponibility;
     private Speciality speciality;
+    private String image_url;
 }
