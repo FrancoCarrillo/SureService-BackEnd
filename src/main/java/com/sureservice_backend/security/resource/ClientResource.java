@@ -16,4 +16,6 @@ public class ClientResource {
     private String telephone_number;
     private Role rol;
     private int amount_reservation;
+    private String image_url;
+    private String image_Id;
 }
