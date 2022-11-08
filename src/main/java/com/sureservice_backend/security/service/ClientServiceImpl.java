@@ -53,7 +53,8 @@ public class ClientServiceImpl implements ClientService {
             client.setTelephone_number(request.getTelephone_number());
             client.setName(request.getName());
             client.setLast_name(request.getLast_name());
-
+            client.setImage_url("https://res.cloudinary.com/daslzhbab/image/upload/v1667853785/mmb0zluthi93wazo6vaa.jpg");
+            client.setImage_Id("mmb0zluthi93wazo6vaa");
             return clientRepository.save(client);
         } catch (Exception e){
             throw new ResourceValidationException(e.getMessage());

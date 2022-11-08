@@ -11,6 +11,7 @@ import com.sureservice_backend.shared.exception.ResourceNotFoundException;
 import com.sureservice_backend.shared.exception.ResourceValidationException;
 import com.sureservice_backend.shared.mapping.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,8 +22,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -33,7 +39,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     AuthenticationManager authenticationManager;
-
+    @Autowired
+    CloudinaryService cloudinaryService;
     @Autowired
     JwtHandler handler;
 
@@ -105,6 +112,33 @@ public class UserServiceImpl implements UserService {
 
         try {
             user.setPassword(encoder.encode(request.getNewPassword()));
+
+            return userRepository.save(user);
+
+        } catch (Exception e){
+            throw new ResourceValidationException(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public User updateImage(Long userId, MultipartFile multipartFile) throws IOException {
+        User user = userRepository.getById(userId);
+
+        try {
+
+            BufferedImage bi = ImageIO.read(multipartFile.getInputStream());
+            if(bi == null){
+                throw new ResourceValidationException("Image not valid");
+            }
+            Map result = cloudinaryService.upload(multipartFile);
+
+            if(!Objects.equals(user.getImage_Id(), "mmb0zluthi93wazo6vaa")){
+                cloudinaryService.delete(user.getImage_Id());
+            }
+
+            user.setImage_Id((String)result.get("public_id"));
+            user.setImage_url((String)result.get("url"));
 
             return userRepository.save(user);
 

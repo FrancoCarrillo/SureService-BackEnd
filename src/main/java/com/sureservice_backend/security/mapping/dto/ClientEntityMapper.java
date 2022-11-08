@@ -14,8 +14,9 @@ public class ClientEntityMapper {
     private String email;
     private Role rol;
     private int amount_reservation;
-
-    public ClientEntityMapper(Long id, String username, String email, Role rol, int amount_reservation, String name, String last_name, String telephone_number, String dni) {
+    private String image_url;
+    private String image_Id;
+    public ClientEntityMapper(Long id, String image_Id, String username, String email, Role rol, int amount_reservation, String name, String last_name, String telephone_number, String dni, String image_url) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -25,5 +26,7 @@ public class ClientEntityMapper {
         this.last_name = last_name;
         this.telephone_number = telephone_number;
         this.dni = dni;
+        this.image_url = image_url;
+        this.image_Id = image_Id;
     }
 }
