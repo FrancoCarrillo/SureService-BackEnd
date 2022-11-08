@@ -106,6 +106,7 @@ public class TechnicianServiceImpl implements TechnicianService {
             technician.setTelephone_number(request.getTelephone_number());
             technician.setName(request.getName());
             technician.setLast_name(request.getLast_name());
+            technician.setImage_url("https://res.cloudinary.com/daslzhbab/image/upload/v1667853785/mmb0zluthi93wazo6vaa.jpg");
 
             return technicianRepository.save(technician);
 

@@ -19,7 +19,7 @@ public class TechnicianEntityMapper {
     private String last_name;
     private String dni;
     private String telephone_number;
-
+    private String image_url;
     public TechnicianEntityMapper(Long id,
                                   String username,
                                   String email,
@@ -32,7 +32,9 @@ public class TechnicianEntityMapper {
                                   String name,
                                   String last_name,
                                   String dni,
-                                  String telephone_number) {
+                                  String telephone_number,
+                                  String image_url
+    ) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -46,5 +48,6 @@ public class TechnicianEntityMapper {
         this.last_name = last_name;
         this.dni = dni;
         this.telephone_number = telephone_number;
+        this.image_url = image_url;
     }
 }
