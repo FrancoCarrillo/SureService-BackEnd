@@ -8,15 +8,21 @@ import com.sureservice_backend.security.domain.service.communication.RegisterTec
 import com.sureservice_backend.security.domain.service.communication.UpdatePasswordRequest;
 import com.sureservice_backend.security.mapping.UserMapper;
 import com.sureservice_backend.security.resource.UserResource;
+import com.sureservice_backend.shared.exception.ExceptionMessage;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.validation.Valid;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.List;
 
 @SecurityRequirement(name = "sureservice")
@@ -43,6 +49,11 @@ public class UsersController {
     @PutMapping("/password/{userId}")
     public UserResource updatePassword(@PathVariable Long userId, @RequestBody UpdatePasswordRequest request){
         return mapper.toResource(userService.updatePassword(userId, request));
+    }
+
+    @PutMapping("image/{userId}")
+    public UserResource updateImage(@PathVariable Long userId, @RequestParam MultipartFile multipartFile) throws IOException {
+        return mapper.toResource(userService.updateImage(userId, multipartFile));
     }
 
     @GetMapping
