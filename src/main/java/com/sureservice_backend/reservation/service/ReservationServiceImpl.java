@@ -3,6 +3,7 @@ package com.sureservice_backend.reservation.service;
 import com.sureservice_backend.reservation.domain.model.entity.Reservation;
 import com.sureservice_backend.reservation.domain.persistence.ReservationRepository;
 import com.sureservice_backend.reservation.domain.service.ReservationService;
+import com.sureservice_backend.servicesrequest.domain.model.entity.ServiceRequest;
 import com.sureservice_backend.servicesrequest.domain.persistence.ServiceRequestRepository;
 import com.sureservice_backend.shared.exception.ResourceNotFoundException;
 import com.sureservice_backend.shared.exception.ResourceValidationException;
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -41,12 +44,17 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public List<Reservation> getAllByTechnicianId(Long technicianId) {
-        return reservationRepository.findByTechnicianId(technicianId);
+        Comparator<Reservation> comparator = Comparator.comparing(Reservation::getId).reversed();
+        return reservationRepository.findByTechnicianId(technicianId).stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
     }
-
     @Override
     public List<Reservation> getAllByClientId(Long clientId) {
-        return reservationRepository.findByClientId(clientId);
+        Comparator<Reservation> comparator = Comparator.comparing(Reservation::getId).reversed();
+        return reservationRepository.findByClientId(clientId).stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
     }
 
     @Override

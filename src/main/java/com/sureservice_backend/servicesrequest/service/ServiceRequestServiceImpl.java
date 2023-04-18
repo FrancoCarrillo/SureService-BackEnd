@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ServiceRequestServiceImpl implements ServiceRequestService {
@@ -45,12 +47,18 @@ public class ServiceRequestServiceImpl implements ServiceRequestService {
 
     @Override
     public List<ServiceRequest> getAllByTechnicianId(Long technicianId) {
-        return serviceRequestRepository.findByTechnicianId(technicianId);
+        Comparator<ServiceRequest> comparator = Comparator.comparing(ServiceRequest::getId).reversed();
+        return serviceRequestRepository.findByTechnicianId(technicianId).stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<ServiceRequest> getAllByClientId(Long clientId) {
-        return serviceRequestRepository.findByClientId(clientId);
+        Comparator<ServiceRequest> comparator = Comparator.comparing(ServiceRequest::getId).reversed();
+        return serviceRequestRepository.findByClientId(clientId).stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
     }
 
     @Override
