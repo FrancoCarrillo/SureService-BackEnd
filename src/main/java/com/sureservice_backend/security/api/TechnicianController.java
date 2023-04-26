@@ -69,7 +69,7 @@ public class TechnicianController {
 
 
     @PutMapping("{technicianId}")
-    public TechnicianResource update(@PathVariable Long technicianId, @RequestBody UpdateTechnicianRequest technicianResource){
+    public TechnicianResource update(@PathVariable Long technicianId, @Valid @RequestBody UpdateTechnicianRequest technicianResource){
         return mapper.toResource(technicianService.update(technicianId, technicianResource));
     }
 
