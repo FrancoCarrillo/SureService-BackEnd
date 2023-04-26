@@ -11,8 +11,8 @@ Feature: Post operation on SureService API
     And match $ == "An error occurred while authenticating: Bad credentials"
 
     Examples:
-      | username | password |
-      | username | password |
+      | username  | password |
+      | marco_cal1 | string   |
 
   @SignInUserWithWrongPassword
   Scenario Outline: Sign In user with wrong password
@@ -21,5 +21,15 @@ Feature: Post operation on SureService API
     And match $ == "An error occurred while authenticating: Bad credentials"
 
     Examples:
-      | username | password |
-      | username | password |
+      | username  | password |
+      | marco_cal | string_   |
+
+  @SignInUserWithWrongPassword
+  Scenario Outline: Sign In user with wrong password
+    When method POST
+    Then status 200
+    And match $.token == "#string"
+
+    Examples:
+      | username  | password |
+      | marco_cal | string   |

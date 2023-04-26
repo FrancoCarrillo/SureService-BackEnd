@@ -5,6 +5,6 @@ Feature: Integration test for post client
     * call read("post/client-post.feature@CreateUserWithWrongPhone")
     * call read("post/client-post.feature@CreateUserWithWrongDni")
     * call read("post/client-post.feature@CreateUserWithWrongPassword")
-    * def id = call read("post/client-post.feature@CreateUser")
-    * def user_id = $id.id
+    * def client_result = call read("post/client-post.feature@CreateUser")
+    * def user_id = $client_result.id
     * call read("../users/delete/user-delete.feature@DeleteUser") { user_id: #(user_id) }
