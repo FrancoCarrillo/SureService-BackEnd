@@ -1,6 +1,5 @@
 Feature: Integration test for create user
 
-  @CreateReservation
   Scenario: Post flow
     * call read("client-post.feature@CreateUserWithWrongEmail")
     * call read("client-post.feature@CreateUserWithWrongPhone")
