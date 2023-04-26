@@ -38,7 +38,7 @@ public class User extends AuditModel {
 
     @NotBlank
     @Size(max = 9)
-    private String telephone_number;
+    private String telephoneNumber;
 
     @NotBlank
     @Size(max = 8)

@@ -103,7 +103,7 @@ public class TechnicianServiceImpl implements TechnicianService {
             technician.setPassword(encoder.encode(request.getPassword()));
             technician.setRol(role);
             technician.setDni(request.getDni());
-            technician.setTelephone_number(request.getTelephone_number());
+            technician.setTelephoneNumber(request.getTelephone_number());
             technician.setName(request.getName());
             technician.setLast_name(request.getLast_name());
             technician.setImage_url("https://res.cloudinary.com/daslzhbab/image/upload/v1667853785/mmb0zluthi93wazo6vaa.jpg");
@@ -134,7 +134,7 @@ public class TechnicianServiceImpl implements TechnicianService {
         technician.setEmail(request.getEmail());
         technician.setRol(role);
         technician.setDni(request.getDni());
-        technician.setTelephone_number(request.getTelephone_number());
+        technician.setTelephoneNumber(request.getTelephone_number());
         technician.setName(request.getName());
         technician.setLast_name(request.getLast_name());
 

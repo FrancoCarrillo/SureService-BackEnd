@@ -37,6 +37,12 @@ public class ClientServiceImpl implements ClientService {
         if (userRepository.existsByEmail(request.getEmail()))
             throw new ResourceValidationException("Email is already used.");
 
+        if (userRepository.existsByDni(request.getDni()))
+            throw new ResourceValidationException("DNI is already used.");
+
+        if (userRepository.existsByTelephoneNumber(request.getTelephone_number()))
+            throw new ResourceValidationException("Telephone number is already used.");
+
         Role role = roleRepository.findAllById(1L);
 
         if(role == null)
@@ -50,7 +56,7 @@ public class ClientServiceImpl implements ClientService {
             client.setPassword(encoder.encode(request.getPassword()));
             client.setRol(role);
             client.setDni(request.getDni());
-            client.setTelephone_number(request.getTelephone_number());
+            client.setTelephoneNumber(request.getTelephone_number());
             client.setName(request.getName());
             client.setLast_name(request.getLast_name());
             client.setImage_url("https://res.cloudinary.com/daslzhbab/image/upload/v1667853785/mmb0zluthi93wazo6vaa.jpg");
@@ -75,7 +81,7 @@ public class ClientServiceImpl implements ClientService {
         client.setEmail(request.getEmail());
         client.setRol(role);
         client.setDni(request.getDni());
-        client.setTelephone_number(request.getTelephone_number());
+        client.setTelephoneNumber(request.getTelephone_number());
         client.setName(request.getName());
         client.setLast_name(request.getLast_name());
 
