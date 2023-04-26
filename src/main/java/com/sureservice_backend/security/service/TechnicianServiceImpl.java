@@ -85,7 +85,7 @@ public class TechnicianServiceImpl implements TechnicianService {
         if(role == null)
             throw new ResourceValidationException("Role not found");
 
-        Speciality speciality = specialityRepository.findAllById(request.getSpeciality());
+        Speciality speciality = specialityRepository.findAllById(Long.parseLong(request.getSpeciality()));
 
         if(speciality == null)
             throw new ResourceValidationException("Speciality not found");
