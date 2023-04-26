@@ -2,7 +2,7 @@ Feature: Post operation on SureService API
 
   Background:
     * url "http://localhost:8080" + "/api/v1/" + "technician/" + "sign-up"
-    * request { "username": "#(username)", "email": "#(email)", "password": "#(password)", "name": "#(name)", "last_name": "#(last_name)", "telephone_number": "#(telephone_number)", "dni": "#(dni)", "professional_profile": "#(professional_profile)", "district": "#(district)", "speciality": "#(sp_id)" }
+    * request { "username": "#(username)", "email": "#(email)", "password": "#(password)", "name": "#(name)", "last_name": "#(last_name)", "telephone_number": "#(telephone_number)", "dni": "#(dni)", "professional_profile": "#(professional_profile)", "district": "#(district)", "speciality": "#(specialityId)" }
 
   @CreateTechnician
   Scenario Outline: Post technician
