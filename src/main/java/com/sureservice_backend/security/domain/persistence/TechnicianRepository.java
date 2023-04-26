@@ -14,6 +14,10 @@ public interface TechnicianRepository extends JpaRepository<Technician, Long> {
     @Override
     List<Technician> findAll();
 
+    Technician findFirstByUsername(String username);
+    Technician findFirstByEmail(String email);
+    Technician findFirstByTelephoneNumber(String phoneNumber);
+    Technician findFirstByDni(String dni);
 
     List<Technician> findAllByDistrict(String districtName);
 

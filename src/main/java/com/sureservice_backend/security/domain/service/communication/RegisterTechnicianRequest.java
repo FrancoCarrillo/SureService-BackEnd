@@ -54,5 +54,5 @@ public class RegisterTechnicianRequest {
     private String district;
 
     @NotNull
-    private Long speciality;
+    private String speciality;
 }
