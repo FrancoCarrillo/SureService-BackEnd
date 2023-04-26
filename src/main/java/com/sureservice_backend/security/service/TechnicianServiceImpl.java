@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -117,8 +118,27 @@ public class TechnicianServiceImpl implements TechnicianService {
     }
 
     @Override
-    public Technician update(Long technicianId, UpdateTechnicianRequest request) {
+    public Technician update(Long technicianId, UpdateTechnicianRequest request)
+    {
+        Technician existWithUsername = technicianRepository.findFirstByUsername(request.getUsername());
 
+        if(existWithUsername != null && !Objects.equals(existWithUsername.getId(), technicianId))
+            throw new ResourceValidationException("Username is already used.");
+
+        Technician existWithEmail = technicianRepository.findFirstByEmail(request.getEmail());
+
+        if(existWithEmail != null && !Objects.equals(existWithEmail.getId(), technicianId))
+            throw new ResourceValidationException("Email is already used.");
+
+        Technician existWithPhoneNumber = technicianRepository.findFirstByTelephoneNumber(request.getTelephone_number());
+
+        if(existWithPhoneNumber != null && !Objects.equals(existWithPhoneNumber.getId(), technicianId))
+            throw new ResourceValidationException("Phone number is already used.");
+
+        Technician existWithDni = technicianRepository.findFirstByDni(request.getDni());
+
+        if(existWithDni != null && !Objects.equals(existWithDni.getId(), technicianId))
+            throw new ResourceValidationException("Dni is already used.");
 
         Role role = roleRepository.findAllById(2L);
         Speciality speciality = specialityRepository.findAllById(request.getSpeciality());

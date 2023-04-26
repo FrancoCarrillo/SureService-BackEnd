@@ -22,7 +22,7 @@ Feature: Post operation on SureService API
 
     Examples:
       | username | email                | password | name  | last_name | telephone_number | dni
-      | francocg | marco.sa@hotmail.com | string   | Marco | Salas     | 988877           | 74657574
+      | franco_cg | marco.sa@hotmail.com | string   | Marco | Salas     | 988877           | 74657574
 
   @CreateUserWithWrongDni
   Scenario Outline: Post user with wrong dni
@@ -32,7 +32,7 @@ Feature: Post operation on SureService API
 
     Examples:
       | username | email                | password | name  | last_name | telephone_number | dni
-      | francocg | marco.sa@hotmail.com | string   | Marco | Salas     | 988877676        | 98765
+      | franco_cg | marco.sa@hotmail.com | string   | Marco | Salas     | 988877676        | 98765
 
   @CreateUserWithWrongPassword
   Scenario Outline: Post user with wrong password
@@ -42,7 +42,7 @@ Feature: Post operation on SureService API
 
     Examples:
       | username | email                | password | name  | last_name | telephone_number | dni
-      | francocg | marco.sa@hotmail.com | hola     | Marco | Salas     | 988877676        | 84758484
+      | franco_cg | marco.sa@hotmail.com | hola     | Marco | Salas     | 988877676        | 84758484
 
   @CreateUser
   Scenario Outline: Post user
@@ -52,7 +52,7 @@ Feature: Post operation on SureService API
 
     Examples:
       | username | email                | password | name  | last_name | telephone_number | dni      | id                          |
-      | francocg | marco.sa@hotmail.com | string   | Marco | Salas     | 988877676        | 84758484 | <eval> karate.set('id', id) |
+      | franco_cg | marco.sa@hotmail.com | string   | Marco | Salas     | 988877676        | 84758484 | <eval> karate.set('id', id) |
 
   Scenario Outline: Post user with duplicate username error
     When method POST

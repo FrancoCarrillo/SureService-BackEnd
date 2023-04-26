@@ -3,9 +3,7 @@ package com.sureservice_backend.security.domain.service.communication;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -48,7 +46,11 @@ public class UpdateTechnicianRequest {
     @NotNull
     private Long speciality;
 
+    @Min(value = 1, message = "The valoration must have more than 1")
+    @Max(value = 5,  message = "The valoration must have less than 5")
     private int valoration;
 
+    @Min(value = 0, message = "The valoration must have more than 0")
+    @Max(value = 1,  message = "The valoration must have less than 1")
     private int disponibility;
 }
