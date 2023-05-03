@@ -14,7 +14,7 @@ public class TechnicianResource {
     private String last_name;
     private String email;
     private String dni;
-    private String telephone_number;
+    private String telephoneNumber;
     private Role rol;
     private String professional_profile;
     private int valoration;

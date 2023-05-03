@@ -13,7 +13,7 @@ public class ClientResource {
     private String last_name;
     private String email;
     private String dni;
-    private String telephone_number;
+    private String telephoneNumber;
     private Role rol;
     private int amount_reservation;
     private String image_url;
