@@ -8,3 +8,4 @@ Feature: Integration test for post client
     * def client_result = call read("post/client-post.feature@CreateUser")
     * def user_id = $client_result.id
     * call read("../users/delete/user-delete.feature@DeleteUser") { user_id: #(user_id) }
+
