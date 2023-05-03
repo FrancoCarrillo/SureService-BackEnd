@@ -7,3 +7,4 @@ Feature: Integration test for sign in users
     * def technician_id = $technician_result.id
     * call read("post/users-post.feature")
     * call read("delete/user-delete.feature@DeleteUser") { user_id: #(technician_id) }
+
